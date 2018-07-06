@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxzy.mapper.TbPayMapper" >
+  <resultMap id="BaseResultMap" type="com.hxzy.pojo.TbPay" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pay_emNumber" property="payEmnumber" jdbcType="VARCHAR" />
+    <result column="pay_emName" property="payEmname" jdbcType="VARCHAR" />
+    <result column="pay_month" property="payMonth" jdbcType="VARCHAR" />
+    <result column="pay_baseMoney" property="payBasemoney" jdbcType="INTEGER" />
+    <result column="pay_overtime" property="payOvertime" jdbcType="INTEGER" />
+    <result column="pay_age" property="payAge" jdbcType="INTEGER" />
+    <result column="pay_check" property="payCheck" jdbcType="REAL" />
+    <result column="pay_absent" property="payAbsent" jdbcType="REAL" />
+    <result column="pay_safety" property="paySafety" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pay_emNumber, pay_emName, pay_month, pay_baseMoney, pay_overtime, pay_age, pay_check, 
+    pay_absent, pay_safety
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hxzy.pojo.TbPayExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_pay
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_pay
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hxzy.pojo.TbPayExample" >
+    delete from tb_pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hxzy.pojo.TbPay" >
+    insert into tb_pay (id, pay_emNumber, pay_emName, 
+      pay_month, pay_baseMoney, pay_overtime, 
+      pay_age, pay_check, pay_absent, 
+      pay_safety)
+    values (#{id,jdbcType=INTEGER}, #{payEmnumber,jdbcType=VARCHAR}, #{payEmname,jdbcType=VARCHAR}, 
+      #{payMonth,jdbcType=VARCHAR}, #{payBasemoney,jdbcType=INTEGER}, #{payOvertime,jdbcType=INTEGER}, 
+      #{payAge,jdbcType=INTEGER}, #{payCheck,jdbcType=REAL}, #{payAbsent,jdbcType=REAL}, 
+      #{paySafety,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxzy.pojo.TbPay" >
+    insert into tb_pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="payEmnumber != null" >
+        pay_emNumber,
+      </if>
+      <if test="payEmname != null" >
+        pay_emName,
+      </if>
+      <if test="payMonth != null" >
+        pay_month,
+      </if>
+      <if test="payBasemoney != null" >
+        pay_baseMoney,
+      </if>
+      <if test="payOvertime != null" >
+        pay_overtime,
+      </if>
+      <if test="payAge != null" >
+        pay_age,
+      </if>
+      <if test="payCheck != null" >
+        pay_check,
+      </if>
+      <if test="payAbsent != null" >
+        pay_absent,
+      </if>
+      <if test="paySafety != null" >
+        pay_safety,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payEmnumber != null" >
+        #{payEmnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payEmname != null" >
+        #{payEmname,jdbcType=VARCHAR},
+      </if>
+      <if test="payMonth != null" >
+        #{payMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="payBasemoney != null" >
+        #{payBasemoney,jdbcType=INTEGER},
+      </if>
+      <if test="payOvertime != null" >
+        #{payOvertime,jdbcType=INTEGER},
+      </if>
+      <if test="payAge != null" >
+        #{payAge,jdbcType=INTEGER},
+      </if>
+      <if test="payCheck != null" >
+        #{payCheck,jdbcType=REAL},
+      </if>
+      <if test="payAbsent != null" >
+        #{payAbsent,jdbcType=REAL},
+      </if>
+      <if test="paySafety != null" >
+        #{paySafety,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hxzy.pojo.TbPayExample" resultType="java.lang.Integer" >
+    select count(*) from tb_pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_pay
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.payEmnumber != null" >
+        pay_emNumber = #{record.payEmnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payEmname != null" >
+        pay_emName = #{record.payEmname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payMonth != null" >
+        pay_month = #{record.payMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payBasemoney != null" >
+        pay_baseMoney = #{record.payBasemoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.payOvertime != null" >
+        pay_overtime = #{record.payOvertime,jdbcType=INTEGER},
+      </if>
+      <if test="record.payAge != null" >
+        pay_age = #{record.payAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.payCheck != null" >
+        pay_check = #{record.payCheck,jdbcType=REAL},
+      </if>
+      <if test="record.payAbsent != null" >
+        pay_absent = #{record.payAbsent,jdbcType=REAL},
+      </if>
+      <if test="record.paySafety != null" >
+        pay_safety = #{record.paySafety,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_pay
+    set id = #{record.id,jdbcType=INTEGER},
+      pay_emNumber = #{record.payEmnumber,jdbcType=VARCHAR},
+      pay_emName = #{record.payEmname,jdbcType=VARCHAR},
+      pay_month = #{record.payMonth,jdbcType=VARCHAR},
+      pay_baseMoney = #{record.payBasemoney,jdbcType=INTEGER},
+      pay_overtime = #{record.payOvertime,jdbcType=INTEGER},
+      pay_age = #{record.payAge,jdbcType=INTEGER},
+      pay_check = #{record.payCheck,jdbcType=REAL},
+      pay_absent = #{record.payAbsent,jdbcType=REAL},
+      pay_safety = #{record.paySafety,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.pojo.TbPay" >
+    update tb_pay
+    <set >
+      <if test="payEmnumber != null" >
+        pay_emNumber = #{payEmnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payEmname != null" >
+        pay_emName = #{payEmname,jdbcType=VARCHAR},
+      </if>
+      <if test="payMonth != null" >
+        pay_month = #{payMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="payBasemoney != null" >
+        pay_baseMoney = #{payBasemoney,jdbcType=INTEGER},
+      </if>
+      <if test="payOvertime != null" >
+        pay_overtime = #{payOvertime,jdbcType=INTEGER},
+      </if>
+      <if test="payAge != null" >
+        pay_age = #{payAge,jdbcType=INTEGER},
+      </if>
+      <if test="payCheck != null" >
+        pay_check = #{payCheck,jdbcType=REAL},
+      </if>
+      <if test="payAbsent != null" >
+        pay_absent = #{payAbsent,jdbcType=REAL},
+      </if>
+      <if test="paySafety != null" >
+        pay_safety = #{paySafety,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxzy.pojo.TbPay" >
+    update tb_pay
+    set pay_emNumber = #{payEmnumber,jdbcType=VARCHAR},
+      pay_emName = #{payEmname,jdbcType=VARCHAR},
+      pay_month = #{payMonth,jdbcType=VARCHAR},
+      pay_baseMoney = #{payBasemoney,jdbcType=INTEGER},
+      pay_overtime = #{payOvertime,jdbcType=INTEGER},
+      pay_age = #{payAge,jdbcType=INTEGER},
+      pay_check = #{payCheck,jdbcType=REAL},
+      pay_absent = #{payAbsent,jdbcType=REAL},
+      pay_safety = #{paySafety,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxzy.mapper.TbTrainMapper" >
+  <resultMap id="BaseResultMap" type="com.hxzy.pojo.TbTrain" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tn_man" property="tnMan" jdbcType="VARCHAR" />
+    <result column="tn_title" property="tnTitle" jdbcType="VARCHAR" />
+    <result column="tn_content" property="tnContent" jdbcType="VARCHAR" />
+    <result column="tn_time" property="tnTime" jdbcType="VARCHAR" />
+    <result column="tn_address" property="tnAddress" jdbcType="VARCHAR" />
+    <result column="tn_join" property="tnJoin" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hxzy.pojo.TbTrain" extends="BaseResultMap" >
+    <result column="tn_bz" property="tnBz" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, tn_man, tn_title, tn_content, tn_time, tn_address, tn_join
+  </sql>
+  <sql id="Blob_Column_List" >
+    tn_bz
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hxzy.pojo.TbTrainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_train
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hxzy.pojo.TbTrainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_train
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_train
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_train
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hxzy.pojo.TbTrainExample" >
+    delete from tb_train
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hxzy.pojo.TbTrain" >
+    insert into tb_train (id, tn_man, tn_title, 
+      tn_content, tn_time, tn_address, 
+      tn_join, tn_bz)
+    values (#{id,jdbcType=INTEGER}, #{tnMan,jdbcType=VARCHAR}, #{tnTitle,jdbcType=VARCHAR}, 
+      #{tnContent,jdbcType=VARCHAR}, #{tnTime,jdbcType=VARCHAR}, #{tnAddress,jdbcType=VARCHAR}, 
+      #{tnJoin,jdbcType=VARCHAR}, #{tnBz,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxzy.pojo.TbTrain" >
+    insert into tb_train
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tnMan != null" >
+        tn_man,
+      </if>
+      <if test="tnTitle != null" >
+        tn_title,
+      </if>
+      <if test="tnContent != null" >
+        tn_content,
+      </if>
+      <if test="tnTime != null" >
+        tn_time,
+      </if>
+      <if test="tnAddress != null" >
+        tn_address,
+      </if>
+      <if test="tnJoin != null" >
+        tn_join,
+      </if>
+      <if test="tnBz != null" >
+        tn_bz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tnMan != null" >
+        #{tnMan,jdbcType=VARCHAR},
+      </if>
+      <if test="tnTitle != null" >
+        #{tnTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tnContent != null" >
+        #{tnContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tnTime != null" >
+        #{tnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tnAddress != null" >
+        #{tnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tnJoin != null" >
+        #{tnJoin,jdbcType=VARCHAR},
+      </if>
+      <if test="tnBz != null" >
+        #{tnBz,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hxzy.pojo.TbTrainExample" resultType="java.lang.Integer" >
+    select count(*) from tb_train
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_train
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tnMan != null" >
+        tn_man = #{record.tnMan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tnTitle != null" >
+        tn_title = #{record.tnTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tnContent != null" >
+        tn_content = #{record.tnContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tnTime != null" >
+        tn_time = #{record.tnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tnAddress != null" >
+        tn_address = #{record.tnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tnJoin != null" >
+        tn_join = #{record.tnJoin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tnBz != null" >
+        tn_bz = #{record.tnBz,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_train
+    set id = #{record.id,jdbcType=INTEGER},
+      tn_man = #{record.tnMan,jdbcType=VARCHAR},
+      tn_title = #{record.tnTitle,jdbcType=VARCHAR},
+      tn_content = #{record.tnContent,jdbcType=VARCHAR},
+      tn_time = #{record.tnTime,jdbcType=VARCHAR},
+      tn_address = #{record.tnAddress,jdbcType=VARCHAR},
+      tn_join = #{record.tnJoin,jdbcType=VARCHAR},
+      tn_bz = #{record.tnBz,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_train
+    set id = #{record.id,jdbcType=INTEGER},
+      tn_man = #{record.tnMan,jdbcType=VARCHAR},
+      tn_title = #{record.tnTitle,jdbcType=VARCHAR},
+      tn_content = #{record.tnContent,jdbcType=VARCHAR},
+      tn_time = #{record.tnTime,jdbcType=VARCHAR},
+      tn_address = #{record.tnAddress,jdbcType=VARCHAR},
+      tn_join = #{record.tnJoin,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.pojo.TbTrain" >
+    update tb_train
+    <set >
+      <if test="tnMan != null" >
+        tn_man = #{tnMan,jdbcType=VARCHAR},
+      </if>
+      <if test="tnTitle != null" >
+        tn_title = #{tnTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tnContent != null" >
+        tn_content = #{tnContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tnTime != null" >
+        tn_time = #{tnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tnAddress != null" >
+        tn_address = #{tnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tnJoin != null" >
+        tn_join = #{tnJoin,jdbcType=VARCHAR},
+      </if>
+      <if test="tnBz != null" >
+        tn_bz = #{tnBz,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hxzy.pojo.TbTrain" >
+    update tb_train
+    set tn_man = #{tnMan,jdbcType=VARCHAR},
+      tn_title = #{tnTitle,jdbcType=VARCHAR},
+      tn_content = #{tnContent,jdbcType=VARCHAR},
+      tn_time = #{tnTime,jdbcType=VARCHAR},
+      tn_address = #{tnAddress,jdbcType=VARCHAR},
+      tn_join = #{tnJoin,jdbcType=VARCHAR},
+      tn_bz = #{tnBz,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxzy.pojo.TbTrain" >
+    update tb_train
+    set tn_man = #{tnMan,jdbcType=VARCHAR},
+      tn_title = #{tnTitle,jdbcType=VARCHAR},
+      tn_content = #{tnContent,jdbcType=VARCHAR},
+      tn_time = #{tnTime,jdbcType=VARCHAR},
+      tn_address = #{tnAddress,jdbcType=VARCHAR},
+      tn_join = #{tnJoin,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

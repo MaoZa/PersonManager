@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxzy.mapper.TbEmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.hxzy.pojo.TbEmployee" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="em_serialNumber" property="emSerialnumber" jdbcType="VARCHAR" />
+    <result column="em_name" property="emName" jdbcType="VARCHAR" />
+    <result column="em_sex" property="emSex" jdbcType="VARCHAR" />
+    <result column="em_age" property="emAge" jdbcType="INTEGER" />
+    <result column="em_IDCard" property="emIdcard" jdbcType="VARCHAR" />
+    <result column="em_born" property="emBorn" jdbcType="VARCHAR" />
+    <result column="em_nation" property="emNation" jdbcType="VARCHAR" />
+    <result column="em_marriage" property="emMarriage" jdbcType="VARCHAR" />
+    <result column="em_visage" property="emVisage" jdbcType="VARCHAR" />
+    <result column="em_ancestralHome" property="emAncestralhome" jdbcType="VARCHAR" />
+    <result column="em_tel" property="emTel" jdbcType="VARCHAR" />
+    <result column="em_address" property="emAddress" jdbcType="VARCHAR" />
+    <result column="em_afterSchool" property="emAfterschool" jdbcType="VARCHAR" />
+    <result column="em_speciality" property="emSpeciality" jdbcType="VARCHAR" />
+    <result column="em_culture" property="emCulture" jdbcType="VARCHAR" />
+    <result column="em_startime" property="emStartime" jdbcType="VARCHAR" />
+    <result column="em_departmentId" property="emDepartmentid" jdbcType="INTEGER" />
+    <result column="em_typeWork" property="emTypework" jdbcType="VARCHAR" />
+    <result column="em_creatime" property="emCreatime" jdbcType="VARCHAR" />
+    <result column="em_createName" property="emCreatename" jdbcType="VARCHAR" />
+    <result column="em_bz" property="emBz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, em_serialNumber, em_name, em_sex, em_age, em_IDCard, em_born, em_nation, em_marriage, 
+    em_visage, em_ancestralHome, em_tel, em_address, em_afterSchool, em_speciality, em_culture, 
+    em_startime, em_departmentId, em_typeWork, em_creatime, em_createName, em_bz
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hxzy.pojo.TbEmployeeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_employee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_employee
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_employee
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hxzy.pojo.TbEmployeeExample" >
+    delete from tb_employee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hxzy.pojo.TbEmployee" >
+    insert into tb_employee (id, em_serialNumber, em_name, 
+      em_sex, em_age, em_IDCard, 
+      em_born, em_nation, em_marriage, 
+      em_visage, em_ancestralHome, em_tel, 
+      em_address, em_afterSchool, em_speciality, 
+      em_culture, em_startime, em_departmentId, 
+      em_typeWork, em_creatime, em_createName, 
+      em_bz)
+    values (#{id,jdbcType=INTEGER}, #{emSerialnumber,jdbcType=VARCHAR}, #{emName,jdbcType=VARCHAR}, 
+      #{emSex,jdbcType=VARCHAR}, #{emAge,jdbcType=INTEGER}, #{emIdcard,jdbcType=VARCHAR}, 
+      #{emBorn,jdbcType=VARCHAR}, #{emNation,jdbcType=VARCHAR}, #{emMarriage,jdbcType=VARCHAR}, 
+      #{emVisage,jdbcType=VARCHAR}, #{emAncestralhome,jdbcType=VARCHAR}, #{emTel,jdbcType=VARCHAR}, 
+      #{emAddress,jdbcType=VARCHAR}, #{emAfterschool,jdbcType=VARCHAR}, #{emSpeciality,jdbcType=VARCHAR}, 
+      #{emCulture,jdbcType=VARCHAR}, #{emStartime,jdbcType=VARCHAR}, #{emDepartmentid,jdbcType=INTEGER}, 
+      #{emTypework,jdbcType=VARCHAR}, #{emCreatime,jdbcType=VARCHAR}, #{emCreatename,jdbcType=VARCHAR}, 
+      #{emBz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxzy.pojo.TbEmployee" >
+    insert into tb_employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="emSerialnumber != null" >
+        em_serialNumber,
+      </if>
+      <if test="emName != null" >
+        em_name,
+      </if>
+      <if test="emSex != null" >
+        em_sex,
+      </if>
+      <if test="emAge != null" >
+        em_age,
+      </if>
+      <if test="emIdcard != null" >
+        em_IDCard,
+      </if>
+      <if test="emBorn != null" >
+        em_born,
+      </if>
+      <if test="emNation != null" >
+        em_nation,
+      </if>
+      <if test="emMarriage != null" >
+        em_marriage,
+      </if>
+      <if test="emVisage != null" >
+        em_visage,
+      </if>
+      <if test="emAncestralhome != null" >
+        em_ancestralHome,
+      </if>
+      <if test="emTel != null" >
+        em_tel,
+      </if>
+      <if test="emAddress != null" >
+        em_address,
+      </if>
+      <if test="emAfterschool != null" >
+        em_afterSchool,
+      </if>
+      <if test="emSpeciality != null" >
+        em_speciality,
+      </if>
+      <if test="emCulture != null" >
+        em_culture,
+      </if>
+      <if test="emStartime != null" >
+        em_startime,
+      </if>
+      <if test="emDepartmentid != null" >
+        em_departmentId,
+      </if>
+      <if test="emTypework != null" >
+        em_typeWork,
+      </if>
+      <if test="emCreatime != null" >
+        em_creatime,
+      </if>
+      <if test="emCreatename != null" >
+        em_createName,
+      </if>
+      <if test="emBz != null" >
+        em_bz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="emSerialnumber != null" >
+        #{emSerialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="emName != null" >
+        #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emSex != null" >
+        #{emSex,jdbcType=VARCHAR},
+      </if>
+      <if test="emAge != null" >
+        #{emAge,jdbcType=INTEGER},
+      </if>
+      <if test="emIdcard != null" >
+        #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emBorn != null" >
+        #{emBorn,jdbcType=VARCHAR},
+      </if>
+      <if test="emNation != null" >
+        #{emNation,jdbcType=VARCHAR},
+      </if>
+      <if test="emMarriage != null" >
+        #{emMarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="emVisage != null" >
+        #{emVisage,jdbcType=VARCHAR},
+      </if>
+      <if test="emAncestralhome != null" >
+        #{emAncestralhome,jdbcType=VARCHAR},
+      </if>
+      <if test="emTel != null" >
+        #{emTel,jdbcType=VARCHAR},
+      </if>
+      <if test="emAddress != null" >
+        #{emAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="emAfterschool != null" >
+        #{emAfterschool,jdbcType=VARCHAR},
+      </if>
+      <if test="emSpeciality != null" >
+        #{emSpeciality,jdbcType=VARCHAR},
+      </if>
+      <if test="emCulture != null" >
+        #{emCulture,jdbcType=VARCHAR},
+      </if>
+      <if test="emStartime != null" >
+        #{emStartime,jdbcType=VARCHAR},
+      </if>
+      <if test="emDepartmentid != null" >
+        #{emDepartmentid,jdbcType=INTEGER},
+      </if>
+      <if test="emTypework != null" >
+        #{emTypework,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatime != null" >
+        #{emCreatime,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatename != null" >
+        #{emCreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="emBz != null" >
+        #{emBz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hxzy.pojo.TbEmployeeExample" resultType="java.lang.Integer" >
+    select count(*) from tb_employee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_employee
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.emSerialnumber != null" >
+        em_serialNumber = #{record.emSerialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emName != null" >
+        em_name = #{record.emName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emSex != null" >
+        em_sex = #{record.emSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emAge != null" >
+        em_age = #{record.emAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.emIdcard != null" >
+        em_IDCard = #{record.emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emBorn != null" >
+        em_born = #{record.emBorn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emNation != null" >
+        em_nation = #{record.emNation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emMarriage != null" >
+        em_marriage = #{record.emMarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emVisage != null" >
+        em_visage = #{record.emVisage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emAncestralhome != null" >
+        em_ancestralHome = #{record.emAncestralhome,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emTel != null" >
+        em_tel = #{record.emTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emAddress != null" >
+        em_address = #{record.emAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emAfterschool != null" >
+        em_afterSchool = #{record.emAfterschool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emSpeciality != null" >
+        em_speciality = #{record.emSpeciality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emCulture != null" >
+        em_culture = #{record.emCulture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emStartime != null" >
+        em_startime = #{record.emStartime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emDepartmentid != null" >
+        em_departmentId = #{record.emDepartmentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.emTypework != null" >
+        em_typeWork = #{record.emTypework,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emCreatime != null" >
+        em_creatime = #{record.emCreatime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emCreatename != null" >
+        em_createName = #{record.emCreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emBz != null" >
+        em_bz = #{record.emBz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_employee
+    set id = #{record.id,jdbcType=INTEGER},
+      em_serialNumber = #{record.emSerialnumber,jdbcType=VARCHAR},
+      em_name = #{record.emName,jdbcType=VARCHAR},
+      em_sex = #{record.emSex,jdbcType=VARCHAR},
+      em_age = #{record.emAge,jdbcType=INTEGER},
+      em_IDCard = #{record.emIdcard,jdbcType=VARCHAR},
+      em_born = #{record.emBorn,jdbcType=VARCHAR},
+      em_nation = #{record.emNation,jdbcType=VARCHAR},
+      em_marriage = #{record.emMarriage,jdbcType=VARCHAR},
+      em_visage = #{record.emVisage,jdbcType=VARCHAR},
+      em_ancestralHome = #{record.emAncestralhome,jdbcType=VARCHAR},
+      em_tel = #{record.emTel,jdbcType=VARCHAR},
+      em_address = #{record.emAddress,jdbcType=VARCHAR},
+      em_afterSchool = #{record.emAfterschool,jdbcType=VARCHAR},
+      em_speciality = #{record.emSpeciality,jdbcType=VARCHAR},
+      em_culture = #{record.emCulture,jdbcType=VARCHAR},
+      em_startime = #{record.emStartime,jdbcType=VARCHAR},
+      em_departmentId = #{record.emDepartmentid,jdbcType=INTEGER},
+      em_typeWork = #{record.emTypework,jdbcType=VARCHAR},
+      em_creatime = #{record.emCreatime,jdbcType=VARCHAR},
+      em_createName = #{record.emCreatename,jdbcType=VARCHAR},
+      em_bz = #{record.emBz,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.pojo.TbEmployee" >
+    update tb_employee
+    <set >
+      <if test="emSerialnumber != null" >
+        em_serialNumber = #{emSerialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="emName != null" >
+        em_name = #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emSex != null" >
+        em_sex = #{emSex,jdbcType=VARCHAR},
+      </if>
+      <if test="emAge != null" >
+        em_age = #{emAge,jdbcType=INTEGER},
+      </if>
+      <if test="emIdcard != null" >
+        em_IDCard = #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emBorn != null" >
+        em_born = #{emBorn,jdbcType=VARCHAR},
+      </if>
+      <if test="emNation != null" >
+        em_nation = #{emNation,jdbcType=VARCHAR},
+      </if>
+      <if test="emMarriage != null" >
+        em_marriage = #{emMarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="emVisage != null" >
+        em_visage = #{emVisage,jdbcType=VARCHAR},
+      </if>
+      <if test="emAncestralhome != null" >
+        em_ancestralHome = #{emAncestralhome,jdbcType=VARCHAR},
+      </if>
+      <if test="emTel != null" >
+        em_tel = #{emTel,jdbcType=VARCHAR},
+      </if>
+      <if test="emAddress != null" >
+        em_address = #{emAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="emAfterschool != null" >
+        em_afterSchool = #{emAfterschool,jdbcType=VARCHAR},
+      </if>
+      <if test="emSpeciality != null" >
+        em_speciality = #{emSpeciality,jdbcType=VARCHAR},
+      </if>
+      <if test="emCulture != null" >
+        em_culture = #{emCulture,jdbcType=VARCHAR},
+      </if>
+      <if test="emStartime != null" >
+        em_startime = #{emStartime,jdbcType=VARCHAR},
+      </if>
+      <if test="emDepartmentid != null" >
+        em_departmentId = #{emDepartmentid,jdbcType=INTEGER},
+      </if>
+      <if test="emTypework != null" >
+        em_typeWork = #{emTypework,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatime != null" >
+        em_creatime = #{emCreatime,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatename != null" >
+        em_createName = #{emCreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="emBz != null" >
+        em_bz = #{emBz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxzy.pojo.TbEmployee" >
+    update tb_employee
+    set em_serialNumber = #{emSerialnumber,jdbcType=VARCHAR},
+      em_name = #{emName,jdbcType=VARCHAR},
+      em_sex = #{emSex,jdbcType=VARCHAR},
+      em_age = #{emAge,jdbcType=INTEGER},
+      em_IDCard = #{emIdcard,jdbcType=VARCHAR},
+      em_born = #{emBorn,jdbcType=VARCHAR},
+      em_nation = #{emNation,jdbcType=VARCHAR},
+      em_marriage = #{emMarriage,jdbcType=VARCHAR},
+      em_visage = #{emVisage,jdbcType=VARCHAR},
+      em_ancestralHome = #{emAncestralhome,jdbcType=VARCHAR},
+      em_tel = #{emTel,jdbcType=VARCHAR},
+      em_address = #{emAddress,jdbcType=VARCHAR},
+      em_afterSchool = #{emAfterschool,jdbcType=VARCHAR},
+      em_speciality = #{emSpeciality,jdbcType=VARCHAR},
+      em_culture = #{emCulture,jdbcType=VARCHAR},
+      em_startime = #{emStartime,jdbcType=VARCHAR},
+      em_departmentId = #{emDepartmentid,jdbcType=INTEGER},
+      em_typeWork = #{emTypework,jdbcType=VARCHAR},
+      em_creatime = #{emCreatime,jdbcType=VARCHAR},
+      em_createName = #{emCreatename,jdbcType=VARCHAR},
+      em_bz = #{emBz,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- <select id="selectEmployees" resultType="TbEmployee">
+  	SELECT em_serialNumber, em_name, em_sex, em_departmentId, em_typeWork, em_culture,
+	em_startime FROM tb_employee
+  </select> -->
+</mapper>

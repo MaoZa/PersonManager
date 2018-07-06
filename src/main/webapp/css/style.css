@@ -1,0 +1,176 @@
+* {
+	text-decoration: none;
+	list-style: none;
+	margin: 0px auto;
+	padding: 0px;
+}
+
+.bg_keyboard {
+	background: url(../img/bg_keyboard.png) no-repeat 330px -50px;
+}
+
+.bg_title {
+	width: 1840px;
+	height: 98px;
+}
+
+.logo {
+	width: 300px;
+	height: 100%;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 98px;
+}
+
+.bg_gray {
+	margin: 0;
+	width: 1540px;
+	height: 98px;
+	opacity: 0.66;
+	background-color: #6a6a6a;
+	display: inline-block;
+	position: absolute;
+}
+
+.bg_blue {
+	background-color: #6ba2e2;
+}
+
+.sysTime {
+	font-size: 36px;
+	margin-left: 500px;
+	color: white;
+	line-height: 98px;
+}
+
+.sysDate {
+	font-size: 18px;
+	color: white;
+	line-height: 98px;
+}
+
+.sysWeek {
+	font-size: 16px;
+	color: white;
+	line-height: 98px;
+}
+
+.left_nav {
+	background-color: #fdd66d;
+	width: 300px;
+	height: 100%;
+	display: inline-block;
+}
+
+.left_nav ul {
+	width: 100%;
+}
+
+.left_nav ul li {
+	color: #292929;
+	font-size: 18px;
+	letter-spacing: 8px;
+	line-height: 47px;
+	width: 200px;
+	height: 47px;
+	border-bottom: solid 1px #fff7e2;
+	text-align: center;
+}
+
+.left_nav ul li:hover {
+	color: #ffffff;
+	background-color: #fdb800;
+}
+
+.menu {
+	display: inline-block;
+	position: absolute;
+	right: 50px;
+	top: 36px;
+}
+
+.menu ul {
+	float: right;
+}
+
+.menu ul li {
+	font-size: 16px;
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+	color: white;
+}
+
+.menu ul li:nth-child(2) {
+	border-left: solid 1px white;
+	border-right: solid 1px white;
+}
+
+.menu ul li:hover {
+	
+}
+
+iframe {
+	border: solid 0px white;
+	width: 1540px;
+	height: 100%;
+	position: absolute;
+	top: 500px;
+	left: 332px;
+}
+
+.webTitle {
+	color: #2a83ea;
+	font-size: 50px;
+	font-weight: bolder;
+	margin-left: 50px;
+}
+
+.subTitle {
+	font-size: 20px;
+	letter-spacing: 3px;
+}
+
+.whole_content {
+	width: 1840px;
+	height: 942px;
+}
+
+.right_content {
+	display: inline-block;
+}
+
+.left_nav ul .subType {
+	width: 86px;
+	text-align: center;
+	display: none;
+	position: relative;
+	left: 144px;
+	top: -48px;
+	background-color: white;
+}
+
+.left_nav ul .subType li {
+	width: 86px;
+	border: 0;
+}
+
+.subType li a {
+	height: 40px;
+	font-size: 14px;
+	letter-spacing: 0;
+	color: #393734;
+}
+
+.subType li a:hover {
+	color: #fdb800;
+}
+
+.left_nav ul .subType li:hover {
+	background-color: white;
+}
+
+#manage {
+	
+}

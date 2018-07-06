@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxzy.mapper.TbCjMapper" >
+  <resultMap id="BaseResultMap" type="com.hxzy.pojo.TbCj" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cj_title" property="cjTitle" jdbcType="VARCHAR" />
+    <result column="cj_type" property="cjType" jdbcType="VARCHAR" />
+    <result column="cj_money" property="cjMoney" jdbcType="VARCHAR" />
+    <result column="cj_time" property="cjTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hxzy.pojo.TbCj" extends="BaseResultMap" >
+    <result column="cj_content" property="cjContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cj_title, cj_type, cj_money, cj_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    cj_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hxzy.pojo.TbCjExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_cj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hxzy.pojo.TbCjExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_cj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_cj
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_cj
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hxzy.pojo.TbCjExample" >
+    delete from tb_cj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hxzy.pojo.TbCj" >
+    insert into tb_cj (id, cj_title, cj_type, 
+      cj_money, cj_time, cj_content
+      )
+    values (#{id,jdbcType=INTEGER}, #{cjTitle,jdbcType=VARCHAR}, #{cjType,jdbcType=VARCHAR}, 
+      #{cjMoney,jdbcType=VARCHAR}, #{cjTime,jdbcType=VARCHAR}, #{cjContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxzy.pojo.TbCj" >
+    insert into tb_cj
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cjTitle != null" >
+        cj_title,
+      </if>
+      <if test="cjType != null" >
+        cj_type,
+      </if>
+      <if test="cjMoney != null" >
+        cj_money,
+      </if>
+      <if test="cjTime != null" >
+        cj_time,
+      </if>
+      <if test="cjContent != null" >
+        cj_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cjTitle != null" >
+        #{cjTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cjType != null" >
+        #{cjType,jdbcType=VARCHAR},
+      </if>
+      <if test="cjMoney != null" >
+        #{cjMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="cjTime != null" >
+        #{cjTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cjContent != null" >
+        #{cjContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hxzy.pojo.TbCjExample" resultType="java.lang.Integer" >
+    select count(*) from tb_cj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_cj
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cjTitle != null" >
+        cj_title = #{record.cjTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjType != null" >
+        cj_type = #{record.cjType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjMoney != null" >
+        cj_money = #{record.cjMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjTime != null" >
+        cj_time = #{record.cjTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjContent != null" >
+        cj_content = #{record.cjContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_cj
+    set id = #{record.id,jdbcType=INTEGER},
+      cj_title = #{record.cjTitle,jdbcType=VARCHAR},
+      cj_type = #{record.cjType,jdbcType=VARCHAR},
+      cj_money = #{record.cjMoney,jdbcType=VARCHAR},
+      cj_time = #{record.cjTime,jdbcType=VARCHAR},
+      cj_content = #{record.cjContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_cj
+    set id = #{record.id,jdbcType=INTEGER},
+      cj_title = #{record.cjTitle,jdbcType=VARCHAR},
+      cj_type = #{record.cjType,jdbcType=VARCHAR},
+      cj_money = #{record.cjMoney,jdbcType=VARCHAR},
+      cj_time = #{record.cjTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.pojo.TbCj" >
+    update tb_cj
+    <set >
+      <if test="cjTitle != null" >
+        cj_title = #{cjTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cjType != null" >
+        cj_type = #{cjType,jdbcType=VARCHAR},
+      </if>
+      <if test="cjMoney != null" >
+        cj_money = #{cjMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="cjTime != null" >
+        cj_time = #{cjTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cjContent != null" >
+        cj_content = #{cjContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hxzy.pojo.TbCj" >
+    update tb_cj
+    set cj_title = #{cjTitle,jdbcType=VARCHAR},
+      cj_type = #{cjType,jdbcType=VARCHAR},
+      cj_money = #{cjMoney,jdbcType=VARCHAR},
+      cj_time = #{cjTime,jdbcType=VARCHAR},
+      cj_content = #{cjContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxzy.pojo.TbCj" >
+    update tb_cj
+    set cj_title = #{cjTitle,jdbcType=VARCHAR},
+      cj_type = #{cjType,jdbcType=VARCHAR},
+      cj_money = #{cjMoney,jdbcType=VARCHAR},
+      cj_time = #{cjTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
