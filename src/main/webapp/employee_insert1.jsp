@@ -1,6 +1,5 @@
 <%@page import="com.hxzy.pojo.TbManager"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.text.*"%>
@@ -56,8 +55,7 @@
 					</tr>
 				</table>
 
-				<table width="801" height="436" border="0" cellpadding="0"
-					cellspacing="0" background="images/center2.jpg">
+				<table width="801" height="436" border="0" cellpadding="0" cellspacing="0" background="images/center2.jpg">
 					<tr>
 						<td height="436" valign="top" align="center">
 							<!--   -->
@@ -146,8 +144,6 @@
 											<c:forEach items="${categoryList}" var="category">
 												<option value="${category.id}">${category.dtName}</option>
 											</c:forEach>
-											
-
 										</select></td>
 										<th>部门工种：</th>
 										<td bgcolor="#FFFFFF"><select name="emTypework">
@@ -172,11 +168,15 @@
 												title="请输入备注信息" style="" rows="7" cols="75"></textarea></td>
 									</tr>
 								</table>
-								<br> <input type="submit" value="保存" /> &nbsp; <input
-									type="reset" value="重置" /> &nbsp; <input type="button"
-									value="返回" onclick="javascript:history.go(-1);" />
+								<br> 
+								<input type="submit" value="保存" /> &nbsp; 
+								<input type="reset" value="重置" /> &nbsp; 
+								<input type="button" value="返回" onclick="javascript:history.go(-1);" />
 							</form>
 						</td>
+						
+						
+						
 					</tr>
 				</table> </td>
 		</tr>
