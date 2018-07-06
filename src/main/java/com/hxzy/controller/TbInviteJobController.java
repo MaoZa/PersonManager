@@ -1,7 +1,5 @@
 package com.hxzy.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,18 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hxzy.mapper.TbEmployeeMapper;
 import com.hxzy.pojo.TbEmployee;
 import com.hxzy.pojo.TbInvitejob;
 import com.hxzy.service.TbEmployeeService;
-import com.hxzy.service.impl.TbInviteJobServiceImpl;
+import com.hxzy.service.TbInviteJobService;
 import com.hxzy.utils.PackTbEmployee;
 
 @Controller
 public class TbInviteJobController {
 	
 	@Autowired
-	TbInviteJobServiceImpl tbInviteJobServiceImpl;
+	TbInviteJobService tbInviteJobServiceImpl;
 	@Autowired
 	TbEmployeeService TbEmployeeServiceImpl;
 	@RequestMapping("/queryInviteJob")

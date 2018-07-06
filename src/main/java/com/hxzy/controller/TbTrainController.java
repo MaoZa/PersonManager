@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hxzy.pojo.TbTrain;
+import com.hxzy.service.TbTrainService;
 import com.hxzy.service.impl.TbTrainServiceImpl;
 
 @Controller
 public class TbTrainController {
 	
 	@Autowired
-	TbTrainServiceImpl tbTrainServiceImpl;
+	TbTrainService tbTrainServiceImpl;
 	
 	/**
 	 * 分页培训

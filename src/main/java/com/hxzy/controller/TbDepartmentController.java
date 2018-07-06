@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hxzy.pojo.TbDepartment;
+import com.hxzy.service.TbDepartmentService;
 import com.hxzy.service.impl.TbDepartmentServiceImpl;
 
 @Controller
 public class TbDepartmentController {
 	
 	@Autowired
-	private TbDepartmentServiceImpl tbDepartmentServiceImpl;
+	private TbDepartmentService tbDepartmentServiceImpl;
 	/*@RequestMapping("queryDepList")
 	public String queryDepList(HttpServletRequest request) {
 		List<TbDepartment> list = tbDepartmentServiceImpl.selectDeps();

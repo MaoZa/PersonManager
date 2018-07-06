@@ -3,7 +3,6 @@ package com.hxzy.service;
 import java.util.List;
 
 import com.hxzy.pojo.TbInvitejob;
-import com.hxzy.pojo.TbInvitejobExample;
 
 public interface TbInviteJobService {
 	public List<TbInvitejob> queryInviteJob();

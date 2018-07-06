@@ -16,13 +16,14 @@ import com.hxzy.mapper.TbEmployeeMapper;
 import com.hxzy.pojo.TbEmployee;
 import com.hxzy.pojo.TbPay;
 import com.hxzy.service.TbEmployeeService;
+import com.hxzy.service.TbPayService;
 import com.hxzy.service.impl.TbPayServiceImpl;
 
 @Controller
 public class TbPayController {
 	
 	@Autowired
-	private TbPayServiceImpl tbPayServiceImpl;
+	private TbPayService tbPayServiceImpl;
 	@Autowired 
 	private TbEmployeeService tbEmployeeServiceImpl;
 	

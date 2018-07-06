@@ -1,6 +1,7 @@
 package com.hxzy.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hxzy.pojo.TbDepartment;
 
@@ -19,4 +20,6 @@ public interface TbDepartmentService {
 	 * @return
 	 */
 	public int deleteDepartment(int id);
+	
+	public Map<Long, Long> depCountPerson();
 }
